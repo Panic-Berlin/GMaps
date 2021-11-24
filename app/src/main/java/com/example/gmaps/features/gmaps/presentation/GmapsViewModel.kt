@@ -42,7 +42,7 @@ class GmapsViewModel @Inject constructor() : ViewModel() {
      */
     fun calculatingDistance(layer: GeoJsonLayer) {
         _isLoading.value = true
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO){
             val sumDistance = mutableListOf<Int>()
             for (feature in layer.features) {
                 var polygonSize = 0
