@@ -8,7 +8,6 @@ import com.google.maps.android.SphericalUtil
 import com.google.maps.android.data.geojson.GeoJsonLayer
 import com.google.maps.android.data.geojson.GeoJsonMultiPolygon
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.json.JSONObject
