@@ -2,6 +2,7 @@ package com.example.gmaps.features.gmaps.presentation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.gmaps.utils.asLiveData
 import com.google.maps.android.SphericalUtil
 import com.google.maps.android.data.geojson.GeoJsonLayer
@@ -30,8 +31,8 @@ class GmapsViewModel @Inject constructor() : ViewModel() {
      *  Получение координате из бэка
      */
     private fun loadJson() {
-        CoroutineScope(Dispatchers.IO).launch {
-            val result = URL("https://waadsu.com/api/russia.geo.json").readText()
+        viewModelScope.launch(Dispatchers.IO){
+            val result = URL(BASE_URL).readText()
             json.postValue(JSONObject(result))
         }
     }
@@ -41,7 +42,7 @@ class GmapsViewModel @Inject constructor() : ViewModel() {
      */
     fun calculatingDistance(layer: GeoJsonLayer) {
         _isLoading.value = true
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val sumDistance = mutableListOf<Int>()
             for (feature in layer.features) {
                 var polygonSize = 0
@@ -69,3 +70,5 @@ class GmapsViewModel @Inject constructor() : ViewModel() {
         _isLoading.value = false
     }
 }
+
+private const val BASE_URL = "https://waadsu.com/api/russia.geo.json"

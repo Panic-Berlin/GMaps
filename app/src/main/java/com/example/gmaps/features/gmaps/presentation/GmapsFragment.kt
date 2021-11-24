@@ -38,7 +38,6 @@ class GmapsFragment : Fragment(R.layout.gmaps_fragment), OnMapReadyCallback {
      * Получение GeoJson и расчет расстояния
      */
     override fun onMapReady(googleMap: GoogleMap) {
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(42.0, 132.0)))
         viewModel.json.observe(viewLifecycleOwner, {
             val layer = GeoJsonLayer(googleMap, it)
             viewModel.calculatingDistance(layer)
