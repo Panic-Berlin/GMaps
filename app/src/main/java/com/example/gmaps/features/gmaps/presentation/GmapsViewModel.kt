@@ -26,6 +26,7 @@ class GmapsViewModel @Inject constructor() : ViewModel() {
         loadJson()
     }
 
+
     /**
      *  Получение координате из бэка
      */
